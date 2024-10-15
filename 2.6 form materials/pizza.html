@@ -17,7 +17,7 @@
 <p>Our 12" wood-fired pizzas are available for delivery. Build your custom pizza and we'll deliver it within an hour.</p>
 
 
-<form action="http://www.blackgoosebistro.com/pizza.php" method="POST">
+<form action="http://www.blackgoosebistro.com/pizza.php" method="POST" enctype="multipart/form-data">
   <fieldset>
     <legend>Your Information</legend>
    
@@ -42,10 +42,10 @@
 
       <legend>Crust <em>(Choose one)</em>:</legend>
       <ul>
-        <li><label><input type="radio" name="crust" value="white">Classic white</label></li>
-        <li><label><input type="radio" name="crust" value="multigrain">Multigrain</label></li>
-        <li><label><input type="radio" name="crust" value="cheese_stuffed_crust">Cheese-stuffed crust</label></li>
-        <li><label><input type="radio" name="crust" value="gluten_free">Gluten-free</label></li>
+        <li><label><input type="radio" name="crust" value="Classic white" checked>Classic white</label></li>
+        <li><label><input type="radio" name="crust" value="Multigrain">Multigrain</label></li>
+        <li><label><input type="radio" name="crust" value="Cheese-stuffed crust">Cheese-stuffed crust</label></li>
+        <li><label><input type="radio" name="crust" value="Gluten-free">Gluten-free</label></li>
         
       </ul>
     </fieldset>
@@ -54,11 +54,11 @@
     <fieldset>
       <legend>Toppings <em>(Choose as many as you want)</em>:</legend>
       <ul>
-        <li><label><input type="checkbox" name="toppings[]" value="Red sauce" checked>Red sauce</label></li>
+        <li><label><input type="checkbox" name="toppings[]" value="Red sauce" >Red sauce</label></li>
         <li><label><input type="checkbox" name="toppings[]" value="White sauce">White sauce</label></li>
         <li><label><input type="checkbox" name="toppings[]" value="Mozzarella Cheese">Mozzarella Cheese</label></li>
-        <li><label><input type="checkbox" name="toppings[]" value="Pepperoni">Pepperoni</label></li>
-        <li><label><input type="checkbox" name="toppings[]" value="Mushroms">Mushroms</label></li>
+        <li><label><input type="checkbox" name="toppings[]" value="Pepperoni" checked>Pepperoni</label></li>
+        <li><label><input type="checkbox" name="toppings[]" value="Mushroms" checked>Mushroms</label></li>
         <li><label><input type="checkbox" name="toppings[]" value="Peppers">Peppers</label></li>
         <li><label><input type="checkbox" name="toppings[]" value="Anchovies">Anchovies</label></li>
       </ul>
@@ -68,15 +68,29 @@
     <fieldset>
 
       <legend>Number</legend>
-      <p>How many pizzas:<p>
-      <select name="pizzas" size="1" >
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-        <option value="6">6</option>
-      </select>
+      <p>
+        How many pizzas: 
+        
+        <select name="pizzas" size="1">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+        </select>
+        
+        <p>
+      
+
+    </fieldset>
+      
+    
+    <fieldset>
+      
+      
+      <legend>Input Image</legend>
+      <input type="file" name="image" value="pizza-photos" size="100">
 
     </fieldset>
 
