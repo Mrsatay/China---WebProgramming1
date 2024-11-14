@@ -64,13 +64,22 @@ a:active {
 /* styles for navigation */
 #nav {
 	background-color: #751c54;
+  margin-left: 1.2%;
+  margin-right: 1.2%;
+  overflow: hidden;
+  width: 100%;
+  
 }
 #nav ul {
-	list-style:none;
+	list-style-type:none;
+  padding: 0;
+  margin: 0 auto;
+  width: 19.5em;
 } 
 #nav ul li {
-	font-weight: normal;
+	  font-weight: normal;
     text-transform: uppercase;
+    float: left;
 }
 #nav ul a:link {
     color: #fff;
@@ -79,13 +88,22 @@ a:active {
     color: #fff;
   }
 #nav ul a:focus {
-	color:#FC6
+	color:#FC6;
+  border-color: #fff;
 }
 #nav ul a:hover {
     color: #fc6;
+    border-color: #fff;
   }
 #nav ul a:active {
 	color:#F00;
+}
+#nav ul li a{
+  display: block;
+  padding: .5em;
+  border: 1px solid #ba89a8;
+  border-radius: .5em;
+  margin: .25em;
 }
 	
 /* styles for the products section */
@@ -93,14 +111,18 @@ a:active {
 #products {
   background-color: #FFF;
   line-height: 1.5em;
-  padding: 1em;
+  padding: 1em 2%;
   border: double #FFBC53;
-  margin: 1em;
+  margin: 1em 20. 5em 1em 1em;
+  clear: both;
+  overflow: hidden;
+  width: 55%;
+  float: left;
   }
 #products h2 {
   font-size: 1.2em;
   color: #ac267b;
-  text-align: center;
+  text-align: left;
   text-transform: uppercase;
   }
 #products h3 {
@@ -109,8 +131,16 @@ a:active {
   color: #F26521;
   border-top: 1px solid;
   border-left: 3px solid;
+  border-right: 3px solid;
   padding-left: 1em;
   margin-top: 2.5em;
+}
+#products img{
+  float: left;
+  margin: 0 6px 6px 0;
+}
+#products.more{
+  clear: left;
 }
 
 /* styles for the testimonials box */
@@ -123,6 +153,13 @@ a:active {
   padding: 1em;
   padding-left: 55px;
   border-radius: 20px;
+  /* margin-left: 20%;
+  margin-right: 20%; */
+  margin: 0 1em;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 30em;
   }
   
 #testimonials h2 {
@@ -144,6 +181,7 @@ p#copyright {
   color:#663333; 
   font-size: .8em;
   text-align: center;
+  clear: left;
   }
 
 a{
@@ -152,7 +190,15 @@ a{
   padding-bottom: .1em;
 }
 
+#award{
+  position: fixed;
+  top: 35px;
+  left: 25px;
+}
 
+#content{
+  position: relative;
+}
 	
 	
 </style>
@@ -185,13 +231,13 @@ a{
   <h3>Barware</h3>
 <p><img src="images/glasses.jpg" alt="photo of glasses decorated with the letter R"></p>
 <p><em>The perfect wedding gift.</em> Our highest quality glassware is sandblasted by hand with the character of your choice. Choose from 30 characters and 24 typefaces. Custom designs are also available for an additional design charge. Allow 2 to 4 weeks for delivery. </p>
-<p><a href="#">More about custom barware...</a> </p>
+<p class="more"><a href="#">More about custom barware...</a> </p>
 
 
 <h3>Babyware</h3>
 <p><img src="images/shirts.jpg" alt="photos of shirts personalized with initial letters"></p>
 <p><em>Tired of sickly-sweet?</em> These onesies with oversized letters in bold, bright patterns are a welcome change from the usual pastel fare. Monogrammed pants and baby shoes are also available. Tell us the initial and mix and match from 6 fun fabric patterns and 8 edging colors. Allow 2 to 4 weeks for delivery. Sizes: 3mos, 6mos, and 12mos.</p>
-<p><a href="#">More about our onesies...</a> </p>
+<p class="more"><a href="#">More about our onesies...</a> </p>
 </div>
 
 
@@ -201,8 +247,13 @@ a{
   <p>&quot;Thanks for the cool Jenware barware. I couldn't wait until I found &quot;Mr. Right,&quot; so I just bought a set for myself! My friends always want to know where I got them so I send them to your site.&quot; </p>
 </div>
 <p>&nbsp;</p>
-<p id="copyright">All content copyright &copy; Jennifer Robbins and Jenware, Inc. </p>
 
 </div><!-- end #content -->
+<p id="copyright">All content copyright &copy; Jennifer Robbins and Jenware, Inc. </p>
+
+<div id="award">
+  <img src="images/awesomesite.gif" alt="awesome site of the week">
+</div>
+
 </body>
 </html>
