@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <title> first JavaScript</title>
+   <meta charset="utf-8" />
+
+</head>
+<body>
+
+<h1>JavaScrip </h1>
+<p id="demo"> demo </p>
+<script>
+
+
+x = findmin(1, 123, 500, 115, 44, 3300,2300,88);
+function findmin() {
+   var i;
+    var min = 3;
+    for (i = 0; i < arguments.length; i++) {
+        if (min > arguments[i]) {
+            min = arguments[i];
+        }
+    }
+    return min;
+}
+document.getElementById("demo").innerHTML = x;
+
+</script>
+
+</body>
+</html>

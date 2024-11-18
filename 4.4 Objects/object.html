@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <title> first JavaScript</title>
+   <meta charset="utf-8" />
+
+</head>
+<body>
+<p id="demo1">demo1</p>
+<p id="demo2">demo2</p>
+<p id="demo3">demo3</p>
+<p id="demo4">demo4</p>
+<p id="demo5">demo5</p>
+<p id="demo6">demo6</p>
+  <script>
+    
+    //  var person = {firstName:"John", lastName:"Doe", age:50, eyeColor:"blue"};
+	//  document.getElementById("demo1").innerHTML = person.firstName+" "+person.lastName+" "+person.age+" "+person.eyeColor;
+													
+	
+	// var person = {firstName:"John", lastName:"Doe", age:50, eyeColor:"blue"};
+	// 	 var txt="";
+    //      for(x in person)
+	// 	{
+	// 	   txt += person[x];
+	// 	   txt +=" ";
+		  
+	// 	}
+	// 	document.getElementById("demo1").innerHTML = txt;
+		
+												
+	 function Person (firstName,lastName,age,eyeColor)
+	 {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.age = age;
+		this.eyeColor = eyeColor;
+		this.fullName = function(){return this.firstName+" "+
+									this.lastName;}
+		
+	 }
+	 var myFather = new Person("John","Doe",50,"blue");
+	 var myMother = new Person("Sally","Rally",48,"green");
+	 document.getElementById("demo1").innerHTML = myFather.firstName+" "+myFather.lastName+
+													" "+myFather.age+" "+myFather.eyeColor;
+	document.getElementById("demo2").innerHTML = myMother.firstName+" "+myMother.lastName+
+													" "+myMother.age+" "+myMother.eyeColor;												
+	 document.getElementById("demo3").innerHTML = myFather.fullName();
+		
+
+	function student(name,gender,Id_number,year_collage,major){
+		this.name = name;
+		this.gender = gender;
+		this.Id_number = Id_number;
+		this.year_collage = parseInt(year_collage);
+		this.major = major;
+		this.graduate = function(){return this.year_collage + 4}
+		this.clear = function(){return "Name: "+this.name+"<br> Gender: "+this.gender+"<br>Student Number: "+this.Id_number+"<br> Year collage: "+this.year_collage+"<br>Major: "+this.major+"<br>Graduate: "+this.graduate();}
+	}
+
+	var student1 = new student("Budi","Male","1234567","2014","Computer Science");
+	var student2 = new student("Asep","Male","1234568","2015","Math");
+	var student3 = new student("Siti","Female","1234569","2016","Law");
+
+	document.getElementById("demo1").innerHTML = student1.name+" "+student1.gender+" "+student1.Id_number+" "+student1.year_collage+" "+student1.major
+	document.getElementById("demo2").innerHTML = student2.name+" "+student2.gender+" "+student2.Id_number+" "+student2.year_collage+" "+student2.major
+	document.getElementById("demo3").innerHTML = student3.name+" "+student3.gender+" "+student3.Id_number+" "+student3.year_collage+" "+student3.major
+	document.getElementById("demo4").innerHTML = student1.clear();
+	document.getElementById("demo5").innerHTML = student2.clear();
+	document.getElementById("demo6").innerHTML = student3.clear();
+
+	 
+  </script>	
+</body>
+</html>
