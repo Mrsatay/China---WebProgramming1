@@ -5,8 +5,17 @@
 <script>
   function test () {
     x=document.getElementById("img1");
-	x.style.float ="right";
-	x.style.border ="1px solid blue";
+	
+    
+    if(x.style.float == "right"){
+      x.style.float = "left";
+      x.style.border ="1px solid red";
+    }
+    else{
+      x.style.float = "right";
+      x.style.border ="1px solid blue";
+    }
+    
   }
 </script>
 

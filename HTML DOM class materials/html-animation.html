@@ -14,6 +14,8 @@
     height: 50px;
     position: absolute;
     background: orange;
+    bottom: 0;     /* Menambahkan ini untuk posisi awal di bawah */
+    left: 0;       /* Menambahkan ini untuk posisi awal di kiri */
 }
 </style>
 <script>
@@ -26,7 +28,7 @@ function myMove() {
             clearInterval(id);
         } else {
             pos++; 
-            elem.style.top = pos + 'px'; 
+            elem.style.bottom = pos + 'px'; 
             elem.style.left = pos + 'px'; 
         }
     }
