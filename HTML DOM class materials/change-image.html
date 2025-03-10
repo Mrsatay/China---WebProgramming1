@@ -21,6 +21,17 @@ else
   }
 }
 
+function changeToPreviousArrow()
+{
+  var element=document.getElementById('myimage')
+  if (element.src.match("shanghai_lupu_bridge.jpg")){
+    element.src = "images/eg_tulip.jpg";
+  }
+  else{
+    element.src="images/shanghai_lupu_bridge.jpg"
+  }
+}
+
 </script>
 </head>
 
@@ -31,6 +42,8 @@ else
 </P>
 <p>
 <img id="arrow" onclick="changeImage()" src="images/right-arrow.gif" width="50" height="50" />
+<img id="arrow" onclick="changeToPreviousArrow()" src="images/left-arrow.jpg" width="50" height="50" />
+
 </p>
 </body>
 </html>

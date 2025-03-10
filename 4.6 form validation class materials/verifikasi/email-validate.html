@@ -1,0 +1,129 @@
+<html>
+<head>
+
+<style>
+	
+    body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            padding: 20px;
+            width: 50%;
+            margin-left: 20%;
+        }
+
+        form {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        input[type="text"], input[type="password"], input[type="email"], input[type="date"] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"], input[type="reset"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover, input[type="reset"]:hover {
+            background-color: #45a049;
+        }
+
+        #demo {
+            color: red;
+            font-weight: bold;
+        }
+
+</style>
+	
+<script>
+
+
+
+function validateForm()
+{
+		var email = document.getElementById("email");
+		var value=email.value;
+		var apos=value.indexOf("@");
+		var dotpos=value.lastIndexOf(".");
+
+		if (apos < 1||dotpos - apos < 2 ) 
+        {
+            document.getElementById("demo").innerHTML = "incorrect email";
+            return false;
+        }
+		
+
+		var password = document.getElementById("password").value;
+		var confirmed_psw = document.getElementById("confirmed_psw").value;
+
+		if(password.length < 8){
+			document.getElementById("demo").innerHTML="password length is under than 8!"
+			return false
+		}
+		
+		if(confirmed_psw !== password)
+		{
+			document.getElementById("demo").innerHTML = "Passwords dont match"
+			return false;
+		}
+		
+
+		var phone = document.getElementById("phone").value;
+
+		if(phone === ""||isNaN(phone))
+		{
+		document.getElementById("demo").innerHTML="Please enter a valid Phone number";
+			return false
+		}
+		else if(phone.length!==11){
+			document.getElementById("demo").innerHTML="Phone number must be 11";
+			return false
+		}	
+		
+		// If all validations pass, show success alert
+		window.location.href = "login_validate.html";
+        event.preventDefault(); // Mencegah submit default
+    	return true;
+		
+
+
+}
+
+</script>
+</head>
+<body>
+<form name="form2" onsubmit="return validateForm()">
+User name: <input type="text" id="username"  required> 
+<br>
+Password: <input type="password"  name=""  id="password" required>
+<br>
+Confirmed Password: <input type="password"  id="confirmed_psw" required>
+<br>
+Phone: <input type="text"  id="phone"  required>
+<br>
+Birthday(YYYY-MM-DD): <input type="date" id="birthday"  required>
+<br>
+Email: <input type="email" id="email" name="email" size="30"  required>
+<br>
+
+<input src="login_validate.html" type="submit">
+<!-- <a href="login_validate.html" type="submit"></a>  -->
+<input type="Reset" value="Reset">
+<p id="demo"></p>
+</form>
+</body>
+</html>

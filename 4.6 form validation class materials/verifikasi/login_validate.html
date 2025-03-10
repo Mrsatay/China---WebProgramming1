@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login Validation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+            background-color: #f4f4f4;
+        }
+        form {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        #verificationCode {
+            background-color: #f0f0f0;
+            padding: 20px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            user-select: none;
+        }
+        .verification-char {
+            display: inline-block;
+            transform-origin: center;
+            margin: 0 5px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        #demo {
+            font-weight: bold;
+        }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h2>Login Validation</h2>
+    
+    <form name="loginForm" onsubmit="return validate_form()">
+        <input type="text" id="username" placeholder="Username" required>
+        <input type="password" id="password" placeholder="Password" required>
+        
+        <div id="verificationCode"></div>
+        
+        <input type="text" id="userCode" placeholder="Enter verification code" required>
+        <input type="submit" value="Login">
+        <a href="email-validate.html">Back To Register Page?</a>
+        
+        <p id="demo"></p>
+    </form>
+
+    <script>
+        // Variabel untuk menyimpan kode yang dibuat
+        let generatedCode = '';
+
+        // Fungsi untuk membuat kode verifikasi alfanumerik yang terdistorsi
+        function generateVerificationCode() {
+            const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            generatedCode = Array.from(
+                { length: 6 }, 
+                () => characters.charAt(Math.floor(Math.random() * characters.length))
+            ).join('');
+            
+            // Bersihkan kode sebelumnya
+            const codeContainer = document.getElementById('verificationCode');
+            codeContainer.innerHTML = '';
+            
+            // Buat karakter dengan distorsi
+            generatedCode.split('').forEach(char => {
+                const charElement = document.createElement('span');
+                charElement.textContent = char;
+                charElement.className = 'verification-char';
+                
+                // Tambahkan distorsi acak
+                charElement.style.transform = `
+                    rotate(${Math.random() * 40 - 20}deg) 
+                    skew(${Math.random() * 20 - 10}deg)
+                `;
+                
+                // Variasi warna
+                charElement.style.color = `hsl(${Math.random() * 360}, 50%, 50%)`;
+                
+                codeContainer.appendChild(charElement);
+            });
+        }
+
+        // Generate kode saat halaman dimuat
+        document.addEventListener('DOMContentLoaded', generateVerificationCode);
+
+        function validate_form() {
+            // Ambil nilai input
+            let username = document.getElementById('username').value;
+            let password = document.getElementById('password').value;
+            let userInput = document.getElementById('userCode').value;
+            let messageElement = document.getElementById('demo');
+
+            // Validasi username dan password
+            // Contoh sederhana: username "maulana" dan password "maul1234"
+            if (username !== "maulana" || password !== "maul1234") {
+                messageElement.style.color = 'red';
+                messageElement.textContent = 'Invalid username or password';
+                return false;
+            }
+
+            // Validasi input kosong kode verifikasi
+            if (userInput.trim() === '') {
+                messageElement.style.color = 'red';
+                messageElement.textContent = 'Please enter the verification code';
+                return false;
+            }
+
+            // Validasi kode verifikasi case-insensitive
+            if (userInput.toLowerCase() === generatedCode.toLowerCase()) {
+                messageElement.style.color = 'green';
+                messageElement.textContent = 'Login Successful!';
+                
+                // Redirect ke halaman selanjutnya
+                setTimeout(() => {
+                    window.location.href = 'dashboard.html'; // Sesuaikan dengan halaman tujuan
+                }, 1500);
+                
+                return true;
+            } else {
+                messageElement.style.color = 'red';
+                messageElement.textContent = 'Incorrect Verification Code. Try again.';
+                
+                // Generate ulang kode setelah salah
+                generateVerificationCode();
+                
+                return false;
+            }
+        }
+    </script>
+</body>
+</html>

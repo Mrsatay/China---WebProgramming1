@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log in</title>
+    <link rel="stylesheet" href="styles/login.css">
+</head>
+<body>
+    <div class="login-form">
+        <h1>Sign In</h1>
+        <div class="container">
+            <div class="main">
+                <div class="content">
+                    <form id="loginForm" action="#" method="post" onsubmit="return validateLogin()">
+                        <input type="text" id="username" name="username" placeholder="Username" value="user" required autofocus>
+                        <input type="password" id="password" name="password" placeholder="Password" value="user123" required>
+
+                        <div id="captchaContainer">
+                            <div id="captchaCode"></div>
+                        </div>
+
+                        <input type="text" id="userCaptcha" placeholder="Enter Captcha" required>
+                        <button class="btn" type="submit">Login</button>
+                    </form>
+                    <p class="account">Don't Have An Account? <a id="register_button" href="register_page.html"><strong>Register</strong></a></p>
+                    <p>or<strong> Back to <a href="index.html">Homepage</a></strong></p>
+                    
+                </div>
+                <div class="form-img">
+                    <img id="bg-login" src="images/bg-register3.jpg" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    // Contoh data pengguna yang valid (biasanya berasal dari backend/database)
+    const validUsers = [
+        { username: 'admin', password: 'admin123' },
+        { username: 'user', password: 'user123' }
+    ];
+
+
+    // Fungsi untuk generate kode captcha
+    function generateCaptcha() {
+        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        generatedCaptcha = '';
+        
+        for (let i = 0; i < 6; i++) {
+            const randomIndex = Math.floor(Math.random() * characters.length);
+            generatedCaptcha += characters[randomIndex];
+        }
+
+        document.getElementById('captchaCode').textContent = generatedCaptcha;
+    }
+
+    // Panggil fungsi saat halaman dimuat
+    window.onload = generateCaptcha;
+
+
+    function validateLogin() {
+        // Ambil nilai username dan password
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+        const userCaptcha = document.getElementById('userCaptcha').value;
+
+        // Validasi Captcha
+        if (userCaptcha !== generatedCaptcha) {
+            alert('Wrong Captcha Code!');
+            generateCaptcha(); // Generate ulang captcha
+            return false;
+        }
+
+        // Validasi panjang username dan password
+        if (username.length < 3) {
+            alert('Username Must minimum 3 Character');
+            return false;
+        }
+
+        if (password.length < 6) {
+            alert('Password Must minimum 6 Character');
+            return false;
+        }
+
+        // Cek kecocokan username dan password
+        const user = validUsers.find(u => 
+            u.username === username && u.password === password
+        );
+
+        if (user) {
+            // Login berhasil
+            alert('Success Login!');
+            window.location.href = 'index.html'; // Redirect ke halaman utama
+            return true;
+        } else {
+            // Login gagal
+            alert('Username or Password incorrect!');
+            return false;
+        }
+    }
+
+    // Optional: Tambahkan event listener untuk tombol login
+    document.getElementById('loginForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Mencegah form submit otomatis
+        validateLogin();
+    });
+    </script>
+</body>
+</html>

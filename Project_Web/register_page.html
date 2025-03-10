@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="styles/register.css">
+</head>
+<body>
+    <div class="register-form">
+        <h1>Register</h1>
+        <div class="container">
+            <div class="main">
+                <div class="content">
+
+                    <form id="registerForm" action="#" method="post" onsubmit="return validateRegister()">
+                        <input type="text" id="username" name="username" placeholder="Username" required autofocus>
+                        <input type="number" id="phoneNumber" name="phoneNumber" placeholder="Phone Number" required>
+                        <input type="email" id="email" name="email" placeholder="Email" required>
+                        <input type="password" id="password" name="password" placeholder="Password" required>
+                        <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" required>
+                        <button class="btn" type="submit">Register</button>
+                    </form>
+
+                    <p class="account">Already Have An Account? <a id="login_button" href="login_page.html"><strong>Login</strong></a></p>
+                    <p>or<strong> Back to <a href="index.html">Homepage</a></strong></p>
+                </div>
+                <div class="form-img">
+                    <img id="bg-register" src="images/bg-register4.jpg" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    function validateRegister() {
+        // Validasi Username
+        const username = document.getElementById('username');
+        if (username.value.length < 3) {
+            alert('Username minimum must greater than 3 letter');
+            username.focus();
+            return false;
+        }
+
+        // Validasi Nomor Telepon
+        const phoneNumber = document.getElementById('phoneNumber');
+        const phoneRegex = /^[0-9]{10,12}$/;
+        if (!phoneRegex.test(phoneNumber.value)) {
+            alert('phone number must 10-12 digit');
+            phoneNumber.focus();
+            return false;
+        }
+
+        // Validasi Email
+        const email = document.getElementById('email');
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email.value)) {
+            alert('Email Format Not valid');
+            email.focus();
+            return false;
+        }
+
+        // Validasi Password
+        const password = document.getElementById('password');
+        if (password.value.length < 8) {
+            alert('Password must minimum 8 character');
+            password.focus();
+            return false;
+        }
+
+        // Validasi Kekuatan Password
+        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+        if (!passwordRegex.test(password.value)) {
+            alert('Password must have:\n- Uppercase\n- Lowercase\n- Number\n- Special Character');
+            password.focus();
+            return false;
+        }
+
+        // Validasi Konfirmasi Password
+        const confirmPassword = document.getElementById('confirmPassword');
+        if (password.value !== confirmPassword.value) {
+            alert('Password Confirmation Doesnt match');
+            confirmPassword.focus();
+            return false;
+        }
+
+        // Jika semua validasi berhasil
+        alert('Success Register!');
+        // If all validations pass, show success alert
+		window.location.href = "login_page.html";
+        event.preventDefault(); // Mencegah submit default
+    	return true;
+    }
+    </script>
+</body>
+</html>
